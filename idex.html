@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Api </title>
+    <!-- <style>
+        #output {
+            background-color: gray;
+            margin-top: 10px;
+        }
+    </style> -->
+</head>
+
+<body>
+    <button id="getText">Get Text</button>
+    <button id="getUser">Get Users</button>
+    <button id="getPosts">Get Json</button>
+
+    <div id="output"></div>
+    <script>
+        document.getElementById('getText').addEventListener('click', getText);
+        document.getElementById('getUser').addEventListener('click', getUsers);
+        document.getElementById('getPosts').addEventListener('click', getPosts);
+
+
+        function getText() {
+            //     // console.log('muinde');
+            // fetch('sample.txt')
+            //     .then(function(res) {
+            //             // console.log(res.text());
+            //             //             return res.text();
+            //         })
+            //         .then(function(data) {
+            //             console.log(data);
+            //         })
+
+
+            //////arrow functions
+            fetch('sample.txt')
+                .then((res) => res.text())
+                .then((data) => {
+                    console.log(data)
+
+                    document.getElementById('getText').innerHTML = data;
+                })
+                .catch((error) => console.log(error))
+        }
+
+        function getUsers() {
+            fetch('users.json')
+                .then((res) => res.json())
+                .then((data) => {
+                    let output = '<h2>users<h2>';
+                    // console.log(data);
+                    data.forEach(function(user) {
+                        output += `<ul>
+                                  <li>ID: ${user.id}</li>
+                                  <li>name: ${user.name}</li>
+                                  <li>email: ${user.email}</li>
+                                  </ul>`;
+                    });
+                    console.log(output);
+                    document.getElementById('output').innerHTML = output;
+                });
+
+
+        }
+    </script>
+</body>
+
+</html>
+
+</html>
